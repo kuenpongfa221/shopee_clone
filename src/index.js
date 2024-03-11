@@ -1,12 +1,14 @@
-// DEMO JOKE APP
-import generateJoke from './generateJoke'
-import './styles/main.scss'
-import laughing from './assets/laughing.svg'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
-const laughImg = document.getElementById('laughImg')
-laughImg.src = laughing
-
-const jokeBtn = document.getElementById('jokeBtn')
-jokeBtn.addEventListener('click', generateJoke)
-
-generateJoke()
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);

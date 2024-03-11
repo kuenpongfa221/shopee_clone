@@ -4,14 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap"
+    />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
-  <body>
-    <div class="container">
-      <img id="laughImg" alt="" />
-      <h3>Don't Laugh Challenge</h3>
-      <div id="joke" class="joke"></div>
-      <button id="jokeBtn" class="btn">Get Another Joke</button>
-    </div>
+  <body style="background-color: #f5f5f5">
+    <div id="root"></div>
   </body>
 </html>
