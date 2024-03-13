@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { signUp } from "../../../redux/AuthSlice";
 
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase/firebase"
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -20,12 +21,11 @@ const SignUpForm = () => {
     // console.log(email, password);
     dispatch(signUp({ email: email, password: password }));
 
-    const auth = getAuth();
     createUserWithEmailAndPassword(auth, email, password)
       .then((cred) => {
         console.log("user created: ", cred.user);
-        // setEmail("");
-        // setPassword("");
+        setEmail("");
+        setPassword("");
       })
       .catch((e) => {
         console.log(e.message);
@@ -65,6 +65,7 @@ const SignUpForm = () => {
                 sx={{ mb: "30px" }}
                 fullWidth
                 size="small"
+                value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -76,6 +77,7 @@ const SignUpForm = () => {
                 sx={{ mb: "30px" }}
                 size="small"
                 fullWidth
+                value={password}
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}

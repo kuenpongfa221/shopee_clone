@@ -19,3 +19,5 @@ const app = initializeApp(firebaseConfig);
 
 //initial services
 const auth = getAuth();
+
+export { auth };

@@ -2,8 +2,23 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import loginLogo from "../../../Img/loginLogo/loginLogo.png";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase/firebase"
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault()
+    signInWithEmailAndPassword(auth, email, password).then((cred) => {
+      console.log("user logged in: ", cred.user)
+    })
+    setEmail("");
+    setPassword("");
+  }
   return (
     <Box
       display={"flex"}
@@ -37,6 +52,10 @@ const LoginForm = () => {
                 sx={{ mb: "30px" }}
                 fullWidth
                 size="small"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                }}
               />
               <TextField
                 variant="outlined"
@@ -45,9 +64,14 @@ const LoginForm = () => {
                 size="small"
                 type="password"
                 fullWidth
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                }}
               />
               <Button
                 fullWidth
+                onClick={onSubmit}
                 sx={{
                   bgcolor: "#ee4d2d",
                   color: "white",
