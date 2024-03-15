@@ -3,29 +3,49 @@ import React from "react";
 import loginLogo from "../../../Img/loginLogo/loginLogo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
 import { signUp } from "../../../redux/AuthSlice";
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase/firebase"
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../../../firebase/firebase";
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
 
+  const navigate = useNavigate();
+
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log(email, password);
-    dispatch(signUp({ email: email, password: password }));
 
     createUserWithEmailAndPassword(auth, email, password)
       .then((cred) => {
         console.log("user created: ", cred.user);
+
+        setUserName("");
         setEmail("");
         setPassword("");
+        navigate("/");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+
+    updateProfile(auth.currentUser, { displayname: userName })
+      .then(() => {
+        console.log("Current user: ", auth.currentUser);
+
+        // console.log("Profile updated, username: ", userName);
       })
       .catch((e) => {
         console.log(e.message);
@@ -61,7 +81,18 @@ const SignUpForm = () => {
             <form>
               <TextField
                 variant="outlined"
-                label="註冊帳號"
+                label="註冊使用者名稱"
+                sx={{ mb: "30px" }}
+                fullWidth
+                size="small"
+                value={userName}
+                onChange={(e) => {
+                  setUserName(e.target.value);
+                }}
+              />
+              <TextField
+                variant="outlined"
+                label="註冊信箱"
                 sx={{ mb: "30px" }}
                 fullWidth
                 size="small"

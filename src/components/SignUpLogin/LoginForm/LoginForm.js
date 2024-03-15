@@ -3,22 +3,52 @@ import React from "react";
 import loginLogo from "../../../Img/loginLogo/loginLogo.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../firebase/firebase"
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
+import { auth } from "../../../firebase/firebase";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const onSubmitEmail = (e) => {
+    e.preventDefault();
     signInWithEmailAndPassword(auth, email, password).then((cred) => {
-      console.log("user logged in: ", cred.user)
-    })
+      console.log("user logged in: ", cred.user);
+    });
+    navigate("/");
     setEmail("");
     setPassword("");
-  }
+  };
+
+  const onSubmitGoogle = (e) => {
+    e.preventDefault();
+    const providerGoogle = new GoogleAuthProvider();
+    signInWithPopup(auth, providerGoogle)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log("result: ", result);
+        console.log("credential: ", credential);
+        console.log("token: ", token);
+        console.log("user: ", user);
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+      });
+  };
+
   return (
     <Box
       display={"flex"}
@@ -54,7 +84,7 @@ const LoginForm = () => {
                 size="small"
                 value={email}
                 onChange={(e) => {
-                  setEmail(e.target.value)
+                  setEmail(e.target.value);
                 }}
               />
               <TextField
@@ -66,12 +96,12 @@ const LoginForm = () => {
                 fullWidth
                 value={password}
                 onChange={(e) => {
-                  setPassword(e.target.value)
+                  setPassword(e.target.value);
                 }}
               />
               <Button
                 fullWidth
-                onClick={onSubmit}
+                onClick={onSubmitEmail}
                 sx={{
                   bgcolor: "#ee4d2d",
                   color: "white",
@@ -142,6 +172,7 @@ const LoginForm = () => {
                   display="flex"
                   alignItems="center"
                   variant="outlined"
+                  onClick={onSubmitGoogle}
                   sx={{
                     borderColor: "#ccc",
                     width: "100%",

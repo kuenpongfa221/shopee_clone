@@ -6,6 +6,7 @@ export const authSlice = createSlice({
   reducers: {
     signUp: (state, action) => {
       const newUser = {
+        userName: action.payload.userName,
         email: action.payload.email,
         password: action.payload.password,
       };

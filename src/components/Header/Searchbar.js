@@ -16,8 +16,15 @@ const Searchbar = () => {
       alignItems={"center"}
     >
       <Box display={"flex"}>
-        <ShoppingBasketIcon sx={{ paddingTop: "0.125rem" }} />
-        <Typography variant="h5">皮皮購物</Typography>
+        <Link
+          to="/"
+          style={{ textDecoration: "none", color: "white", display: "flex" }}
+        >
+          <ShoppingBasketIcon sx={{ paddingTop: "0.125rem" }} />
+          <Typography variant="h5" fontSize="1.3rem">
+            皮皮購物
+          </Typography>
+        </Link>
       </Box>
       <Box>
         <Paper
