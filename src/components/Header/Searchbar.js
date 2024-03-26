@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import { Box, Stack, Typography, Paper, Button } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
@@ -7,7 +7,15 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from "react-router-dom";
 import "./SCSS/Searchbar.scss";
+import { useNavigate } from "react-router-dom";
+
 const Searchbar = () => {
+  const [searchValue, setSearchValue] = useState("all");
+  const navigate = useNavigate();
+
+  const onSubmit = () => {
+    navigate(`/search/${searchValue}`);
+  };
   return (
     <Stack
       direction="row"
@@ -41,6 +49,10 @@ const Searchbar = () => {
             sx={{ ml: 2, flex: 1 }}
             placeholder="新用戶獨享$100，再想免運吃到飽"
             inputProps={{ "aria-label": "searchInput" }}
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value);
+            }}
           />
 
           <IconButton
@@ -54,6 +66,7 @@ const Searchbar = () => {
             }}
             aria-label="search"
             disableRipple={true}
+            onClick={onSubmit}
           >
             <SearchIcon sx={{ color: "white" }} />
           </IconButton>

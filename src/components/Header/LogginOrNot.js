@@ -21,11 +21,11 @@ const LogginOrNot = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const userName = useSelector((state) => state.auths);
-  console.log(userName);
+  // console.log(userName);
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log("user status is: ", user);
+      // console.log("user status is: ", user);
     });
   });
   return (
