@@ -13,8 +13,8 @@ import {
 import { auth } from "../../../firebase/firebase";
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("test@gmail.com");
+  const [password, setPassword] = useState("testtest");
   const navigate = useNavigate();
 
   const onSubmitEmail = (e) => {

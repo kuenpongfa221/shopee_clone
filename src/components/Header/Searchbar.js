@@ -61,7 +61,7 @@ const Searchbar = () => {
               p: "10px",
               bgcolor: "#ed6c02",
               borderRadius: "0.25rem",
-              height: 35,
+              height: 30,
               "&:hover": { opacity: "0.8" },
             }}
             aria-label="search"
