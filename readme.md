@@ -1,35 +1,43 @@
-# Webpack App Starter
+# 皮皮購物 (shopee clone)
 
-Frontend environment for building JavaScript applications
+github pages:  https://kuenpongfa221.github.io/shopee_clone/
 
-Includes the following features...
+目前進展：
 
-- Babel Loader
-- Sass Loader With Dart Sass
-- HTMLWebpackPlugin
-- WebpackDevServer
-- Asset Resource Loader
-- Source Maps
-- Caching
+- 首頁
+- 註冊頁面
+- 登入頁面
+- 搜尋所有商品頁面
 
-## Usage
+預計規劃：
 
-Run Dev Server (Port 3000)
+- 購物車系統
+- 條件篩選
+- 關鍵字搜尋
 
-```
-  npm run dev
-```
+使用到的技術：
+- React
 
-## Build for production
+- React Redux toolkit
 
-```
-npm run build
-```
+- Material UI
 
-## Demo App
+- webpack 5 + babel
 
-The demo app is a very simple Joke generator. Replace with your own code and install other packages as needed
+- HTML
 
-- index.js (main javascript)
-- template.html (template)
-- styles/main.scss (styles)
+- CSS
+
+- Javascript
+
+## 首頁
+![首頁](https://github.com/kuenpongfa221/shopee_clone/assets/43448852/ee932121-c223-40c1-831f-4d0903d3a0c8)
+
+## 登入畫面
+![登入畫面](https://github.com/kuenpongfa221/shopee_clone/assets/43448852/019ac1d1-7ff1-4be8-80af-a98b93f65d91)
+
+## 登入後
+![登入後-2](https://github.com/kuenpongfa221/shopee_clone/assets/43448852/4e9266fb-2a3f-4c8c-be6b-8cdb41be1a1d)
+
+## 搜尋all頁面
+![搜尋all頁面](https://github.com/kuenpongfa221/shopee_clone/assets/43448852/e8d292dc-b51e-4c0c-9614-cb3c4105e038)
