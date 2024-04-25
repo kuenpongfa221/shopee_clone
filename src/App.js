@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
 import Homepage from "./components/Home/Homepage";
 import SignUp from "./components/SignUpLogin/SignUp/SignUp";
@@ -9,7 +9,7 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Homepage />}></Route>
@@ -19,7 +19,7 @@ const App = () => {
           <Route path="ShoppingCart" element={<ShoppingCart />}></Route>
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
