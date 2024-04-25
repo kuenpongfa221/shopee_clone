@@ -16,6 +16,10 @@ const Searchbar = () => {
   const onSubmit = () => {
     navigate(`/search/${searchValue}`);
   };
+
+  const toShoppingCart = () => {
+    navigate(`/shoppingcart`);
+  };
   return (
     <Stack
       direction="row"
@@ -61,7 +65,7 @@ const Searchbar = () => {
               p: "10px",
               bgcolor: "#ed6c02",
               borderRadius: "0.25rem",
-              height: 35,
+              height: 30,
               "&:hover": { opacity: "0.8" },
             }}
             aria-label="search"
@@ -99,7 +103,7 @@ const Searchbar = () => {
         </Box>
       </Box>
       <Box component="span" sx={{ mr: "5rem" }}>
-        <Button variant="text">
+        <Button variant="text" onClick={toShoppingCart}>
           <ShoppingCartIcon sx={{ color: "white" }} />
         </Button>
       </Box>
